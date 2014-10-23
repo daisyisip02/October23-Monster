@@ -7,6 +7,7 @@
 public class MainScene : SEScene
 {
 	SESprite bg;
+
 	int w;
 	int h;
 	public static int x;
@@ -24,6 +25,8 @@ public class MainScene : SEScene
 		rsc.prepare_image("mycat","sky",w,h);
 		bg= add_sprite_for_image(SEImage.for_resource("mycat"));
 		bg.move(0,0);
+
+	
 		add_entity(new PlayerEntity());
 
 		for(i=0;i< Math.random(5,20);i++)
@@ -31,6 +34,7 @@ public class MainScene : SEScene
 		add_entity(new CatEntity());
 		}
 		AudioClipManager.play("Wind_Loop_1.wav");
+
 	
 	}
 

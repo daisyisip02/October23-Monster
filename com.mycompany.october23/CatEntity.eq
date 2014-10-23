@@ -9,10 +9,12 @@ public class CatEntity : SEEntity
 	int w;
 	int h;
 	SESprite tigrex;
+	SESprite text;
 	int mx;
 	int my;
 	int pX;
 	int py;
+	
 	
 	public void initialize(SEResourceCache rsc)
 	{
@@ -25,6 +27,11 @@ public class CatEntity : SEEntity
 		tigrex=add_sprite_for_image(SEImage.for_resource("mycat2"));
 	
 		tigrex.move(Math.random(0,w), Math.random(0,h));
+
+		 rsc.prepare_font("myfont","trebuchet ms bold color=black", 80);
+        text = add_sprite_for_text(" ","myfont");
+
+	
 	}
 	public void tick(TimeVal now, double delta)
 	{
@@ -33,7 +40,14 @@ public class CatEntity : SEEntity
 		pX= MainScene.x;
 		py= MainScene.y;
 		base.tick(now,delta);
-		tigrex.move(mx+(pX-mx)/Math.random(100,1000),my+ (py-my)/Math.random(100,1000));
+		tigrex.move(mx+(pX-mx)/Math.random(100,1000),my+ (py-my)/Math.random(100,100));
+
+		if((mx/pX)==1 && (my/py)==1){
+            text.set_text("GAME OVER!");
+            text.move(0.35*w, 0.45*h);
+        }
+
+		
 	}
 	public void cleanup()
 	 {
